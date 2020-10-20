@@ -1,0 +1,6 @@
+<h1> Dealership Index </h2>
+
+<% @dealerships.each do |dealership| %>
+    <p><%= link_to dealership.name, dealership_path(dealership)%></p>
+  <% end %>
+
