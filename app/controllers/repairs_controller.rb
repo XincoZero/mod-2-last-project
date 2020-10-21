@@ -1,5 +1,9 @@
 class RepairsController < ApplicationController
 
+    def index 
+        @repairs = Repair.all 
+    end 
+
     def new 
         @repair = Repair.new 
     end 
@@ -15,3 +19,5 @@ class RepairsController < ApplicationController
     end 
 
 end
+
+
