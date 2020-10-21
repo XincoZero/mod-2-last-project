@@ -6,10 +6,44 @@ class RepairsController < ApplicationController
 
     def new 
         @repair = Repair.new 
+        @users = User.all
+        @dealerships = Dealership.all 
     end 
 
     def create 
         @repair = Repair.create(repair_params)
+        if @repair.save
+            redirect_to dealerships_path(@dealership) 
+            #Redirect to dealership show page 
+        else 
+         flash[:errors] = @repair.errors.full_messages
+         redirect_to new_repair_path 
+        end 
+    end 
+
+    def edit 
+        @repairs = Repair.all 
+        @repair = Repair.find(params[:id])
+    end 
+
+    def update 
+        @repair = Repair.find(params[:id])
+        @repair.update(repair_params)
+        if @repair.save 
+            flash[:success] = "Form Successfully Updated!"
+            redirect_to repair_path(@repair)
+        else
+            flash[:errors] = @repair.errors.full_messages
+            redirect_to edit_repair_path(@repair)
+        end 
+    end 
+
+    def show 
+    end 
+
+    def destroy
+        session[:user_id] = nil
+        redirect_to brain_login_path
     end 
 
     private 

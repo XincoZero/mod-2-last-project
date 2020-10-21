@@ -1,0 +1,19 @@
+<h1> Please Update Your Form </h1>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |err| %>
+        <p style=“color: red”><%= err %></p>
+    <% end %>
+<% end %>
+
+<%= form_for @repair do |f|%> 
+    <%= f.label :car_model %>
+    <%= f. text_field :car_model %>
+    <br>
+    <br>
+    <%= f.label :repair_type %>
+    <%= f.text_field :repair_type %>
+    <br>
+    <br>
+    <%= f.submit %>
+  <% end %> 

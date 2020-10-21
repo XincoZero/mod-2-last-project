@@ -1,23 +1,36 @@
 <h1> New Repair </h1>
 
 
-<%= form_for @repair do |f|%>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |err| %>
+        <p style=“color: red”><%= err %></p>
+    <% end %>
+<% end %>
+
+  <%= form_for @repair do |f|%>
     <%= f.label :car_model %>
-    <%= f.collection_select :car_model, @repair, :id, :name %>
+    <%= f. text_field :car_model %>
+    <br>
+    <br>
     <%= f.label :repair_type %>
-    <%= f.collection_select :repair_type, @repair, :id, :name %>
-    <%= submit_tag "Submit Post" %>
-  <% end %>
-
-
-
-
-  create_table "repairs", force: :cascade do |t|
-    t.string "car_model"
-    t.string "repair_type"
-    t.integer "avg_cost"
-    t.integer "avg_time"
-    t.integer "user_id"
-    t.integer "dealership_id"
-    
-
+    <%= f.text_field :repair_type %>
+    <br>
+    <br>
+    <%= f.label :avg_cost %>
+    <%= f.number_field :avg_cost %>
+    <br>
+    <br>
+    <%= f.label :avg_time %>
+    <%= f.number_field :avg_time %>
+    <br>
+    <br>
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id%>
+    <br>
+    <br>
+    <%= f.label :dealership_id %>
+    <%= f.number_field :dealership_id%>
+    <br>
+    <br>
+    <%= f.submit %>
+  <% end %> 
