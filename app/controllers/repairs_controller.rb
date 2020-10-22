@@ -39,12 +39,14 @@ class RepairsController < ApplicationController
     end 
 
     def show 
+        @repair = Repair.find(params[:id])
     end 
 
     def destroy
-        session[:user_id] = nil
-        redirect_to brain_login_path
-    end 
+        @repair = Repair.find(params[:id])
+        @repair.destroy
+        redirect_to new_repair_path
+    end
 
     private 
 
